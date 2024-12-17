@@ -50,23 +50,11 @@ public class TarefasController {
 		return "tarefaEdit.xhtml?faces-redirect=true&id=" + tarefaId.getId();
 	}
 
-//    public String loadTarefaById(int id) {
-//    	System.out.println("Valor " + id);
-//    	tarefaId = TarefaRepository.getInstance().buscarTarefaPorId(Long.valueOf(id));
-//    	System.out.println("tarefaId " + this.tarefaId.getTitulo());
-//
-//        // Adicionar selectedItem ao Flash Scope para usar na próxima página
-//        FacesContext.getCurrentInstance().getExternalContext().getFlash().put("tarefaId", tarefaId);
-//        FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
-//
-//        return "/pages/tarefaEdit?faces-redirect=true";
-//    }
-//
-//    public void removeTarefaById(int idTarefa ) {
-//    	System.out.println("Valor " + idTarefa);
-//    	
-//    	TarefaRepository.getInstance().removeTarefas(Long.valueOf(idTarefa));
-//
-//        // return "/pages/tarefaEdit?faces-redirect=true";
-//    }
+    public void removeTarefaById(int idTarefa ) {
+    	System.out.println("Valor " + idTarefa);
+    	
+    	TarefaRepository.getInstance().removeTarefas(idTarefa);
+
+        // return "/pages/tarefaEdit?faces-redirect=true";
+    }
 }

@@ -9,48 +9,55 @@
 
 <ui:composition template="/pages/template/template.xhtml">
 	<ui:define name="body">
+		
 		<h:form id="createForm">
-			<p:panelGrid columns="2" title="Tarefa">
+			<p:panelGrid columns="3" title="Tarefa">
 				<f:facet name="header">
 					<h:outputText value="Tarefa" />
 				</f:facet>
 
 				<p:outputLabel value="Projeto" for="projeto" />
-	            
-	            <p:selectOneMenu id="projeto" value="#{createTarefaController1.projetoId}" editable="true">
+	            <p:selectOneMenu id="projeto" value="#{createTarefaController.projetoId}" editable="true" required="true">
                     <f:selectItem itemLabel="Selecine Um Projeto" itemValue=""/>
-                    <f:selectItems value="#{createTarefaController1.mapProjetos}"/>
+                    <f:selectItems value="#{createTarefaController.mapProjetos}"/>
                 </p:selectOneMenu>
+                <p:message for="projeto"/>
                                 
-				<p:outputLabel value="Título" />
-				<p:inputText value="#{createTarefaController1.tarefa.titulo}" id="titulo" required="true"/>
+				<p:outputLabel value="Título" for="titulo"/>
+				<p:inputText value="#{createTarefaController.tarefa.titulo}" id="titulo" required="true"/>
+                <p:message for="titulo"/>
 
-				<p:outputLabel value="Descrição" />
-				<p:inputText value="#{createTarefaController1.tarefa.descricao}" id="descricao" required="true"/>
+				<p:outputLabel value="Descrição" for="descricao"/>
+				<p:inputText value="#{createTarefaController.tarefa.descricao}" id="descricao" required="true"/>
+                <p:message for="descricao"/>
 
-				<p:outputLabel value="Prioridade" />
-				<p:selectOneMenu id="prioridade" value="#{createTarefaController1.prioridade}">
+				<p:outputLabel value="Data Inicio" for="dataInicio"/>
+				<p:datePicker value="#{createTarefaController.tarefa.dataInicio}" id="dataInicio" required="true"/>
+                <p:message for="dataInicio"/>
+
+				<p:outputLabel value="Prioridade" for="prioridade"/>
+				<p:selectOneMenu id="prioridade" value="#{createTarefaController.prioridade}">
                     <f:selectItem itemLabel="Selecione um" itemValue=""/>
                     <f:selectItem itemLabel="Muito Alta" itemValue="1"/>
                     <f:selectItem itemLabel="Alta" itemValue="2"/>
                     <f:selectItem itemLabel="Baixa" itemValue="3"/>
                     <f:selectItem itemLabel="Muito Baixa" itemValue="4"/>
                 </p:selectOneMenu>
+                <p:message for="prioridade"/>
                 
-				<p:outputLabel value="Estimativa (horas)" />
-				<p:spinner id="estimativa" value="#{createTarefaController1.tarefa.estimativa}" required="true"
+				<p:outputLabel value="Estimativa (horas)" for="estimativa"/>
+				<p:spinner id="estimativa" value="#{createTarefaController.tarefa.estimativa}" required="true"
 					min="1" max="500"/>
+                <p:message for="estimativa"/>
 				
 				<f:facet name="footer">
-        			<p:commandButton value="Salvar" action="#{createTarefaController1.save}" update="createForm" 
+        			<p:commandButton value="Salvar" action="#{createTarefaController.save}" update="createForm" 
 						styleClass="ui-button-raised ui-button-success" icon="pi pi-save"/>
 						
 					<p:button style="width: 10; margin: 10px" value="Voltar"
 						href="./tarefaList.xhtml" styleClass="ui-button-raised ui-button-danger" />
 				</f:facet>
 			</p:panelGrid>
-			<p:messages for="titulo descricao prioridade estimativa" showDetail="true" autoUpdate="true" closable="true" />
-
 		</h:form>
 	</ui:define>
 </ui:composition>

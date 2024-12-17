@@ -91,7 +91,7 @@ public class TarefaRepository extends GenericRepository<Tarefa, Integer> {
 		System.out.println("Tarefa alterado");
 	}
 	
-	public void removeTarefas(Long idTarefa) {
+	public void removeTarefas(int idTarefa) {
 		System.out.println("[Entrou] removeTarefas, ID: " + idTarefa);
 		EntityManager em = getEntityManager();
         

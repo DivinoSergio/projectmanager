@@ -50,7 +50,7 @@
 				<p:column headerText="Ação">
 					<p:commandButton action="#{tarefasController.editarTarefa}"
 						icon="pi pi-pencil" styleClass="rounded-button ui-button-flat" update="formList">
-						<f:setPropertyActionListener value="#{dataTableItem}" target="#{tarefasController.projetoId}" />
+						<f:setPropertyActionListener value="#{dataTableItem}" target="#{tarefasController.tarefaId}" />
 	                </p:commandButton>
 						
 					<p:commandButton action="#{tarefasController.removeTarefaById(dataTableItem.id)}"

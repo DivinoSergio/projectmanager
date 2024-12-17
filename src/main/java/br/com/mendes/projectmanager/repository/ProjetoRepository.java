@@ -97,7 +97,6 @@ public class ProjetoRepository extends GenericRepository<Projeto, Integer> {
 	
 	public void removeProjetos(int idProjeto)  {
 		System.out.println("[Entrou] removeProjetos, ID: " + idProjeto);
-
 		EntityManager em = getEntityManager();
         
         try {
