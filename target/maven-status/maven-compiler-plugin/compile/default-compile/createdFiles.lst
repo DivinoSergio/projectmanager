@@ -1,0 +1,11 @@
+br\com\mendes\projectmanager\util\JPAUtil.class
+br\com\mendes\projectmanager\controller\ProjetoController.class
+br\com\mendes\projectmanager\model\Projeto.class
+br\com\mendes\projectmanager\service\TarefaService.class
+br\com\mendes\projectmanager\repository\ProjetoRepository.class
+br\com\mendes\projectmanager\repository\GenericRepository.class
+br\com\mendes\projectmanager\repository\TarefaRepository.class
+br\com\mendes\projectmanager\model\Tarefa.class
+br\com\mendes\projectmanager\service\ProjetoConverter.class
+br\com\mendes\projectmanager\service\ProjetoService.class
+br\com\mendes\projectmanager\controller\HelloBean.class

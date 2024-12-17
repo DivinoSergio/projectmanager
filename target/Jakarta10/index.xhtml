@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>JSF Jakarta Faces</title>
+</h:head>
+<h:body>
+    <h:form>
+        <p:growl id="messages" showDetail="true" />
+
+        <p:panel header="Bem-vindo ao JSF com Jakarta Faces e PrimeFaces">
+            <p:outputLabel value="Digite seu nome: " />
+            <p:inputText value="#{helloBean.name}" />
+            <p:commandButton value="Enviar" action="#{helloBean.sayHello}" update="messages" />
+        </p:panel>
+    </h:form>
+</h:body>
+</html>

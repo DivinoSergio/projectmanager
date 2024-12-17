@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="jakarta.faces.facelets"
+    xmlns:f="jakarta.faces.core"
+    xmlns:h="jakarta.faces.html"
+	xmlns:p="http://primefaces.org/ui">
+	
+<ui:composition template="/pages/template/template.xhtml">
+	<ui:define name="body">
+	
+	<p:panel header="Tarefas">
+	
+		<h:form id="formList">
+		<p:panelGrid columns="1" title="Tarefa">
+			<p:commandButton value="Nova Tarefa" action="tarefaSave?faces-redirect=true"
+				styleClass="ui-button-raised ui-button-success" icon="pi pi-chart-bar"/>
+	
+			<p:dataTable id="tableTarefas" value="#{tarefasController.todosTarefas}" var="dataTableItem" rowIndexVar="rowIndex"
+				rows="5" paginator="true" paginatorPosition="bottom" sortBy="#{dataTableItem.projeto.titulo}">
+	
+				<p:headerRow field="projeto.titulo" expandable="true" styleClass="custom-header">
+	                <p:column colspan="6">
+	                    <div class="inline-flex align-items-center" style="vertical-align: middle">
+	                        <h:outputText styleClass="ml-2" value="Projeto: #{dataTableItem.projeto.id} - #{dataTableItem.projeto.titulo}"/>
+	                    </div>
+	                </p:column>
+	            </p:headerRow>
+	            
+				<p:column headerText="ID" style="height: 10px;">
+					<h:outputText value="#{dataTableItem.id}" />
+				</p:column>
+				<p:column headerText="Título">
+					<h:outputText value="#{dataTableItem.titulo}" />
+				</p:column>
+				<p:column headerText="Descrição">
+					<h:outputText value="#{dataTableItem.descricao}" />
+				</p:column>
+				<p:column headerText="Prioridade">
+					<h:outputText value="#{dataTableItem.prioridade}" />
+				</p:column>
+				<p:column headerText="Estimativa">
+					<h:outputText value="#{dataTableItem.estimativa}" />
+				</p:column>
+				<p:column headerText="Data Inicio">
+					<h:outputText value="#{dataTableItem.dataInicio}" >
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+				
+				<p:column headerText="Ação">
+					<p:commandButton action="#{tarefasController.editarTarefa}"
+						icon="pi pi-pencil" styleClass="rounded-button ui-button-flat" update="formList">
+						<f:setPropertyActionListener value="#{dataTableItem}" target="#{tarefasController.projetoId}" />
+	                </p:commandButton>
+						
+					<p:commandButton action="#{tarefasController.removeTarefaById(dataTableItem.id)}"
+						icon="pi pi-trash" styleClass="rounded-button ui-button-danger ui-button-flat" update="formList"/>
+						
+				</p:column>
+			</p:dataTable>
+		</p:panelGrid>
+		</h:form>
+	</p:panel>	
+	</ui:define>
+</ui:composition>
+</html>

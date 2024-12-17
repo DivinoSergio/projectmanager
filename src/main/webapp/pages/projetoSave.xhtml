@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="jakarta.faces.facelets"
+    xmlns:f="jakarta.faces.core"
+    xmlns:h="jakarta.faces.html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/pages/template/template.xhtml">
+	<ui:define name="body">
+		<h:form id="createForm">
+			<p:panelGrid columns="2" title="Projeto">
+				<f:facet name="header">
+					<h:outputText value="Projeto" />
+				</f:facet>
+
+				<p:outputLabel value="Título" />
+				<p:inputText value="#{createProjetoController.projeto.titulo}" id="titulo" required="true"/>
+
+				<p:outputLabel value="Descrição" />
+				<p:inputText value="#{createProjetoController.projeto.descricao}" id="descricao" required="true"/>
+
+				<p:outputLabel value="Data Inicio" />
+				<p:datePicker value="#{createProjetoController.projeto.dataInicio}" id="dataInicio" required="true"/>
+
+				<f:facet name="footer">
+        			<p:commandButton value="Salvar" action="#{createProjetoController.save}" update="createForm" 
+						styleClass="ui-button-raised ui-button-success" icon="pi pi-save"/>
+						
+					<p:button style="width: 10; margin: 10px" value="Voltar"
+						href="./projetoList.xhtml" styleClass="ui-button-raised ui-button-danger" />
+				</f:facet>
+			</p:panelGrid>
+			<p:messages for="titulo descricao dataInicio" showDetail="true" autoUpdate="true" closable="true" />
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+
+</html>

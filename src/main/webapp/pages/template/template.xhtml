@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="jakarta.faces.facelets"
+    xmlns:h="jakarta.faces.html">
+	<h:head>
+	</h:head>
+	<body>
+	
+		<table>
+			<tr>
+				<td colspan="2">
+					<ui:include src="/pages/template/header.xhtml" />
+				</td>
+			</tr>
+			<tr>
+				<td width="200" valign="top">
+					<ui:include src="/pages/template/menu.xhtml" />
+				</td>
+				<td>
+					<ui:insert name="body" />
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>
