@@ -21,20 +21,20 @@
 	            	<h:outputText value="Editar Tarefa"/>
 	         	</f:facet>
 	         	
-				<p:outputLabel value="ID: " />
+				<p:outputLabel value="ID" />
 				<p:outputLabel disabled="false" value="#{editTarefaController.tarefaId.id}" id="id"/>
 				
-				<p:outputLabel value="Título: " />
+				<p:outputLabel value="Título" />
 				<p:inputText value="#{editTarefaController.tarefaId.titulo}" id="titulo" required="true"/>
 				
-				<p:outputLabel value="Descrição: " />
+				<p:outputLabel value="Descrição" />
 				<p:inputText value="#{editTarefaController.tarefaId.descricao}" id="descricao" required="true"/>
 
 				<p:outputLabel value="Data Inicio" />
-				<p:datePicker value="#{createTarefaController.tarefa.dataInicio}" id="dataInicio" required="true"/>
+				<p:datePicker value="#{editTarefaController.tarefaId.dataInicio}" id="dataInicio" required="true"/>
 				
 				<p:outputLabel value="Prioridade" />
-				<p:selectOneMenu id="prioridade" value="#{editTarefaController.prioridade}">
+				<p:selectOneMenu id="prioridade" value="#{editTarefaController.prioridade}" required="true">
 		            <f:selectItem itemLabel="Selecione um" itemValue=""/>
 		            <f:selectItem itemLabel="Muito Alta" itemValue="1"/>
 		            <f:selectItem itemLabel="Alta" itemValue="2"/>
@@ -43,7 +43,7 @@
 	             </p:selectOneMenu>
 	               
 				<p:outputLabel value="Estimativa (horas)" />
-				<p:spinner id="estimativa" value="#{createTarefaController1.tarefa.estimativa}" required="true" />
+				<p:spinner id="estimativa" value="#{editTarefaController.tarefaId.estimativa}" required="true" />
 			
 				<f:facet name="footer">
 					<p:commandButton value="Salvar" action="#{editTarefaController.edit}" 
@@ -51,7 +51,7 @@
 					</p:commandButton>
 						
 					<p:button style="width: 10; margin: 10px" value="Voltar" href="./tarefaList.xhtml"
-						styleClass="ui-button-raised ui-button-danger" />
+						styleClass="ui-button-secondary" />
 				</f:facet>
 			</p:panelGrid>
 		</h:form>

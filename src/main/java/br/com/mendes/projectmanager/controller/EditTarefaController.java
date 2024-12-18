@@ -3,15 +3,13 @@ package br.com.mendes.projectmanager.controller;
 import java.io.Serializable;
 
 import br.com.mendes.projectmanager.model.Tarefa;
-import br.com.mendes.projectmanager.repository.ProjetoRepository;
 import br.com.mendes.projectmanager.repository.TarefaRepository;
-import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 
 @Named
-@RequestScoped
+@ViewScoped
 public class EditTarefaController implements Serializable {
 
 	private static final long serialVersionUID = -3416840278403571207L;
@@ -19,7 +17,6 @@ public class EditTarefaController implements Serializable {
 	private Tarefa tarefaId;
 	private String prioridade;
 	
-	@PostConstruct
 	public void init() {
 		System.out.println("Entrou inicializando o EditTarefaController.");
 		 // Obtém o parâmetro da URL e carrega o objeto
@@ -29,13 +26,14 @@ public class EditTarefaController implements Serializable {
         if (idParam != null) {
             int id = Integer.parseInt(idParam);
             tarefaId = TarefaRepository.getInstance().findById(id);
+            this.prioridade = tarefaId.getEstimativa().toString();
         }
 	}
 	
 	public String edit() {
         // Salvar no banco de dados
-        System.out.println("Salvando: " + tarefaId.getId() + " - " + tarefaId.getTitulo());
-
+		System.out.println("Salvando: " + tarefaId.getId() + " - " + tarefaId.getTitulo());
+		tarefaId.setEstimativa(Integer.valueOf(this.prioridade));
 		TarefaRepository.getInstance().editTarefas(tarefaId);
 		
         // Redirecionar de volta para a página de listagem

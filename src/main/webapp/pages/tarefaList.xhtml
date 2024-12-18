@@ -15,9 +15,9 @@
 			<p:commandButton value="Nova Tarefa" action="tarefaSave?faces-redirect=true"
 				styleClass="ui-button-raised ui-button-success" icon="pi pi-chart-bar"/>
 	
-			<p:dataTable id="tableTarefas" value="#{tarefasController.todosTarefas}" var="dataTableItem" rowIndexVar="rowIndex"
-				rows="5" paginator="true" paginatorPosition="bottom" sortBy="#{dataTableItem.projeto.titulo}">
-	
+			<p:dataTable id="tableTarefas" value="#{tarefasController.todosTarefas}" var="dataTableItem" 
+				rowKey="#{dataTableItem.id}" rows="5" paginator="true" paginatorPosition="bottom" sortBy="#{dataTableItem.projeto.titulo}">
+				
 				<p:headerRow field="projeto.titulo" expandable="true" styleClass="custom-header">
 	                <p:column colspan="6">
 	                    <div class="inline-flex align-items-center" style="vertical-align: middle">
