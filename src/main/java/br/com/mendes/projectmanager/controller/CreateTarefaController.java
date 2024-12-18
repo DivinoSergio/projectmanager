@@ -10,8 +10,11 @@ import br.com.mendes.projectmanager.model.Projeto;
 import br.com.mendes.projectmanager.model.Tarefa;
 import br.com.mendes.projectmanager.repository.ProjetoRepository;
 import br.com.mendes.projectmanager.repository.TarefaRepository;
+import br.com.mendes.projectmanager.service.ProjetoService;
+import br.com.mendes.projectmanager.service.TarefaService;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
 @Named
@@ -19,6 +22,12 @@ import jakarta.inject.Named;
 public class CreateTarefaController implements Serializable {
 	
 	private static final long serialVersionUID = -7264627396423955289L;
+	
+	@Inject
+	private TarefaService tarefaService;
+	@Inject
+	private ProjetoService projetoService;
+	
 	private Tarefa tarefa;
 	private Projeto projetoSelecionado;
 	private Integer projetoId;
@@ -45,18 +54,18 @@ public class CreateTarefaController implements Serializable {
 	
     public List<Projeto> completeProjeto(String query) {
         String queryLowerCase = query.toLowerCase();
-        List<Projeto> projetos = null; //ProjetoRepository.getInstance().buscarProjetos(queryLowerCase);
+        List<Projeto> projetos = projetoService.buscarPorTitulo(queryLowerCase);
         return projetos;
     }
     
 	public String save() {
         // Salvar no banco de dados
         System.out.println("Salvando: " + tarefa.getId() + " - " + tarefa.getTitulo());
-        Projeto p = ProjetoRepository.getInstance().buscarProjetoPorId(this.projetoId);
+        Projeto p = projetoService.buscarProjetoPorId(this.projetoId);
         tarefa.setProjeto(p);
         tarefa.setPrioridade(Integer.valueOf(this.prioridade));
         
-		TarefaRepository.getInstance().saveTarefas(tarefa);
+		tarefaService.salvarTarefa(tarefa);
 		
         // Redirecionar de volta para a página de listagem
         return "/pages/tarefaList.xhtml?faces-redirect=true";

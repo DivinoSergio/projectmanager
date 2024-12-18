@@ -4,8 +4,10 @@ import java.io.Serializable;
 
 import br.com.mendes.projectmanager.model.Tarefa;
 import br.com.mendes.projectmanager.repository.TarefaRepository;
+import br.com.mendes.projectmanager.service.TarefaService;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
 @Named
@@ -13,6 +15,10 @@ import jakarta.inject.Named;
 public class EditTarefaController implements Serializable {
 
 	private static final long serialVersionUID = -3416840278403571207L;
+
+	@Inject
+	private TarefaService tarefaService;
+	
 	private Tarefa tarefa;	
 	private Tarefa tarefaId;
 	private String prioridade;
@@ -25,7 +31,7 @@ public class EditTarefaController implements Serializable {
         
         if (idParam != null) {
             int id = Integer.parseInt(idParam);
-            tarefaId = TarefaRepository.getInstance().findById(id);
+            tarefaId = tarefaService.buscarTarefaPorId(id);
             this.prioridade = tarefaId.getEstimativa().toString();
         }
 	}
@@ -34,7 +40,7 @@ public class EditTarefaController implements Serializable {
         // Salvar no banco de dados
 		System.out.println("Salvando: " + tarefaId.getId() + " - " + tarefaId.getTitulo());
 		tarefaId.setEstimativa(Integer.valueOf(this.prioridade));
-		TarefaRepository.getInstance().editTarefas(tarefaId);
+		tarefaService.atualizarTarefa(tarefaId);
 		
         // Redirecionar de volta para a página de listagem
         return "/pages/tarefaList.xhtml?faces-redirect=true";

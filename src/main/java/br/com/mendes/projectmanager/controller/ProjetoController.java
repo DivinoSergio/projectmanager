@@ -3,15 +3,19 @@ package br.com.mendes.projectmanager.controller;
 import java.util.List;
 
 import br.com.mendes.projectmanager.model.Projeto;
-import br.com.mendes.projectmanager.repository.ProjetoRepository;
+import br.com.mendes.projectmanager.service.ProjetoService;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
 @Named
 @RequestScoped
 public class ProjetoController {
+	
+	 @Inject 
+	 private ProjetoService projetoService;
 	
 	private List<Projeto> todosProjetos;
 	private Projeto projeto = new Projeto();
@@ -38,7 +42,7 @@ public class ProjetoController {
 	}
 	
 	public List<Projeto> getTodosProjetos() {
-		return ProjetoRepository.getInstance().getTodosProjetos();
+		return projetoService.buscarTodosProjetos(); 
 	}
 
     public String editarProjeto() {
@@ -49,7 +53,7 @@ public class ProjetoController {
     	System.out.println("Valor " + id);
     	
     	try {
-	    	ProjetoRepository.getInstance().removeProjetos(id);
+    		projetoService.deletarProjeto(id);
 	    	
 	    } catch (IllegalStateException e) {
 	        // Captura a exceção e adiciona uma mensagem ao contexto

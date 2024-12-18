@@ -3,23 +3,26 @@ package br.com.mendes.projectmanager.controller;
 import java.util.List;
 
 import br.com.mendes.projectmanager.model.Tarefa;
-import br.com.mendes.projectmanager.repository.TarefaRepository;
+import br.com.mendes.projectmanager.service.TarefaService;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
 @Named
 @RequestScoped
 public class TarefasController {
 
+	@Inject
+	private TarefaService tarefaService;
+	
 	private List<Tarefa> todosTarefas;
 	private Tarefa tarefa = new Tarefa();
 	private Tarefa tarefaId;
 
 	@PostConstruct
-	public void init() {
-		List<Tarefa> lst = TarefaRepository.getInstance().getTodosTarefas();
-		todosTarefas = lst;
+	public void init() { 
+		todosTarefas = tarefaService.buscarTodosTarefas();
 	}
 
 	public Tarefa getTarefaId() {
@@ -50,11 +53,9 @@ public class TarefasController {
 		return "tarefaEdit.xhtml?faces-redirect=true&id=" + tarefaId.getId();
 	}
 
-    public void removeTarefaById(int idTarefa ) {
-    	System.out.println("Valor " + idTarefa);
-    	
-    	TarefaRepository.getInstance().removeTarefas(idTarefa);
+	public void removeTarefaById(int idTarefa) {
+		System.out.println("Valor " + idTarefa);
 
-        // return "/pages/tarefaEdit?faces-redirect=true";
-    }
+		tarefaService.deletarTarefa(idTarefa);
+	}
 }

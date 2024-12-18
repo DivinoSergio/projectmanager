@@ -11,32 +11,33 @@
 <ui:composition template="/pages/template/template.xhtml">
 	<ui:define name="body">
 		<h:form id="createForm">
-			<p:panelGrid columns="2" title="Projeto">
+			<p:panelGrid columns="3" title="Projeto">
 				<f:facet name="header">
 					<h:outputText value="Projeto" />
 				</f:facet>
 
-				<p:outputLabel value="Título" />
+				<p:outputLabel value="Título" for="titulo"/>
 				<p:inputText value="#{createProjetoController.projeto.titulo}" id="titulo" required="true"/>
+				<p:message for="titulo"/>
 
-				<p:outputLabel value="Descrição" />
-				<p:inputText value="#{createProjetoController.projeto.descricao}" id="descricao" required="true"/>
+				<p:outputLabel value="Descrição" for="descricao"/>
+				<p:inputTextarea value="#{createProjetoController.projeto.descricao}" id="descricao" required="true"
+					rows="6" cols="33"/>
+				<p:message for="descricao"/>
 
-				<p:outputLabel value="Data Inicio" />
+				<p:outputLabel value="Data Inicio" for="dataInicio"/>
 				<p:datePicker value="#{createProjetoController.projeto.dataInicio}" id="dataInicio" required="true"/>
+				<p:message for="dataInicio"/>
 
 				<f:facet name="footer">
         			<p:commandButton value="Salvar" action="#{createProjetoController.save}" update="createForm" 
 						styleClass="ui-button-raised ui-button-success" icon="pi pi-save"/>
 						
 					<p:button style="width: 10; margin: 10px" value="Voltar"
-						href="./projetoList.xhtml" styleClass="ui-button-raised ui-button-danger" />
+						href="./projetoList.xhtml" styleClass="ui-button-secondary" />
 				</f:facet>
 			</p:panelGrid>
-			<p:messages for="titulo descricao dataInicio" showDetail="true" autoUpdate="true" closable="true" />
-
 		</h:form>
-
 	</ui:define>
 </ui:composition>
 

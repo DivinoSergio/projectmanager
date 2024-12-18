@@ -16,22 +16,27 @@
 	    </f:metadata>
 	    
 		<h:form id="editForm">
-			<p:panelGrid columns="2" title="Editar Projeto">
+			<p:panelGrid columns="3" title="Editar Projeto">
 				<f:facet name="header">
 					<h:outputText value="Editar Projeto" />
 				</f:facet>
 
 				<p:outputLabel value="ID" />
 				<p:outputLabel disabled="false" value="#{editProjetoController.projetoId.id}" id="id"/>
+				<p:message for="id"/>
 				
-				<p:outputLabel value="Título" />
-				<p:inputText value="#{editProjetoController.projetoId.titulo}" id="titulo" required="true" />
+				<p:outputLabel value="Título" for="titulo"/>
+				<p:inputTextarea value="#{editProjetoController.projetoId.titulo}" id="titulo" required="true" 
+					rows="6" cols="33"/>
+				<p:message for="titulo"/>
 				
 				<p:outputLabel value="Descrição" />
 				<p:inputText value="#{editProjetoController.projetoId.descricao}" id="descricao" required="true" />
+				<p:message for="descricao"/>
 				
 				<p:outputLabel value="Data Inicio" />
 				<p:datePicker value="#{editProjetoController.projetoId.dataInicio}" id="dataInicio" required="true" />
+				<p:message for="dataInicio"/>
 				
 				<f:facet name="footer">
 					<p:commandButton value="Salvar" action="#{editProjetoController.edit}" 

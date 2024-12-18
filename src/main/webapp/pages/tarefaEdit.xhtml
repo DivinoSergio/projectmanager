@@ -23,17 +23,22 @@
 	         	
 				<p:outputLabel value="ID" />
 				<p:outputLabel disabled="false" value="#{editTarefaController.tarefaId.id}" id="id"/>
+				<p:message for="id"/>
 				
-				<p:outputLabel value="Título" />
+				<p:outputLabel value="Título" for="titulo"/>
 				<p:inputText value="#{editTarefaController.tarefaId.titulo}" id="titulo" required="true"/>
+				<p:message for="titulo"/>
 				
-				<p:outputLabel value="Descrição" />
-				<p:inputText value="#{editTarefaController.tarefaId.descricao}" id="descricao" required="true"/>
+				<p:outputLabel value="Descrição" for="descricao"/>
+				<p:inputTextarea value="#{editTarefaController.tarefaId.descricao}" id="descricao" required="true"
+					rows="6" cols="33"/>
+				<p:message for="descricao"/>
 
-				<p:outputLabel value="Data Inicio" />
+				<p:outputLabel value="Data Inicio" for="dataInicio"/>
 				<p:datePicker value="#{editTarefaController.tarefaId.dataInicio}" id="dataInicio" required="true"/>
+				<p:message for="dataInicio"/>
 				
-				<p:outputLabel value="Prioridade" />
+				<p:outputLabel value="Prioridade" for="prioridade"/>
 				<p:selectOneMenu id="prioridade" value="#{editTarefaController.prioridade}" required="true">
 		            <f:selectItem itemLabel="Selecione um" itemValue=""/>
 		            <f:selectItem itemLabel="Muito Alta" itemValue="1"/>
@@ -41,9 +46,11 @@
 		            <f:selectItem itemLabel="Baixa" itemValue="3"/>
 		            <f:selectItem itemLabel="Muito Baixa" itemValue="4"/>
 	             </p:selectOneMenu>
+				<p:message for="prioridade"/>
 	               
-				<p:outputLabel value="Estimativa (horas)" />
+				<p:outputLabel value="Estimativa (horas)" for="estimativa"/>
 				<p:spinner id="estimativa" value="#{editTarefaController.tarefaId.estimativa}" required="true" />
+				<p:message for="estimativa"/>
 			
 				<f:facet name="footer">
 					<p:commandButton value="Salvar" action="#{editTarefaController.edit}" 

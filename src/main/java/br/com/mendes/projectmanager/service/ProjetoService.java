@@ -6,7 +6,7 @@ import br.com.mendes.projectmanager.model.Projeto;
 import br.com.mendes.projectmanager.repository.ProjetoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 
-@ApplicationScoped // Garante que o CDI gerencie esta classe
+@ApplicationScoped 
 public class ProjetoService {
 
 	private final ProjetoRepository projetoRepository;

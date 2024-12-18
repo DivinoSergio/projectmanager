@@ -4,8 +4,10 @@ import java.io.Serializable;
 
 import br.com.mendes.projectmanager.model.Projeto;
 import br.com.mendes.projectmanager.repository.ProjetoRepository;
+import br.com.mendes.projectmanager.service.ProjetoService;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
 @Named
@@ -13,6 +15,9 @@ import jakarta.inject.Named;
 public class EditProjetoController implements Serializable {
 
 	private static final long serialVersionUID = -4354208142461711818L;
+
+	@Inject
+	private ProjetoService projetoService;
 	private Projeto projeto;	
 	private Projeto projetoId;
 
@@ -24,7 +29,7 @@ public class EditProjetoController implements Serializable {
         
         if (idParam != null) {
             int id = Integer.parseInt(idParam);
-            projetoId = ProjetoRepository.getInstance().findById(id);
+            projetoId = projetoService.buscarProjetoPorId(id);
         }
 	}
 	
@@ -32,7 +37,7 @@ public class EditProjetoController implements Serializable {
         // Salvar no banco de dados
         System.out.println("Salvando: " + projetoId.getId() + " - " + projetoId.getTitulo());
 
-		ProjetoRepository.getInstance().editProjetos(projetoId);
+        projetoService.atualizarProjeto(projetoId);
 		
         // Redirecionar de volta para a página de listagem
         return "/pages/projetoList.xhtml?faces-redirect=true";
